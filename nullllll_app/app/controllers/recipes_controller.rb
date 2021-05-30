@@ -18,6 +18,18 @@ class RecipesController < ApplicationController
     redirect_to recipe_path(@recipe)
   end
 
+  def update
+    @recipe = Recipe.find(params[:id])
+    @recipe.update(recipe_params)
+    redirect_to recipe_path(@recipe), notice: "レシピを更新しました。"
+  end
+
+  def destroy
+    recipe = Recipe.find(params[:id])
+    recipe.destroy
+    redirect_to user_path(recipe.user), notice: "レシピを削除しました。"
+  end
+
   def edit
     @recipe = Recipe.find(params[:id])
   end
